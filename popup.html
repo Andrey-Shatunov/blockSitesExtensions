@@ -4,22 +4,25 @@
 		<meta charset="UTF-8">
 		<style type="text/css">
 			/* задаём размеры кнопки и размер текста на кнопке */ 
+			html{
+				width: 124px;
+			}
 			button {
 				font-size: 12px;
 				margin-top: 10px;
-				float: right;
+				/* float: right;*/
 			}
 		</style>
 	</head>
 	<body>
 		<!-- создаём кнопку на странице -->
-		<div class="form" style="height:83px">
+		<div class="form">
 			<!--<input id="mylink"></input> -->
 			<button id="addLink">Заблокировать сайт</button>
 			<button id="linksList">Список заблокированых сайтов</button>
-			<button id="clearAll">Удалить все ссылки</button>
+			<!--<button id="clearAll">Удалить все ссылки</button>-->
 		</div>
-		<div><p id="lst"></p></div>
+		<!--<div><p id="lst"></p></div>-->
 		<!-- подключаем скрипт, который обработает нажатие на эту кнопку -->
 		<script src="popup.js"></script>
 	</body>
