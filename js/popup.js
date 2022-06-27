@@ -1,5 +1,11 @@
 let addLink = document.getElementById("addLink");
 let linksList = document.getElementById("linksList");
+let switcher = document.getElementById("switcher");
+
+chrome.storage.local.get({status: 0}, function (result) {
+	console.log(result);
+	switcher.checked = result.status;
+});
 
 addLink.addEventListener("click", async () => {
 	// получаем доступ к активной вкладке
@@ -15,6 +21,16 @@ addLink.addEventListener("click", async () => {
 	});
 });
 
+switcher.addEventListener("click", async () => {
+	chrome.storage.local.get({status: 0}, function (result) {
+		status = parseInt(result.status, 10);
+		console.log("status")
+		console.log( status)
+		new_status  = ((parseInt(result.status, 10)+1)%2)
+		chrome.storage.local.set({'status': new_status});
+		console.log("-----")
+	});
+});
 
 linksList.addEventListener("click", async () => {
 	chrome.tabs.update({url: "linksList.html"});
@@ -39,10 +55,3 @@ function addLinkToStorage(mylink) {
 		});
 	}
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-	chrome.storage.local.get({pearsurls: []}, function (result) {
-		pearsurls = result.pearsurls;
-		document.getElementById("lst").innerHTML = pearsurls.join(" <br> ");
-	});
-});
